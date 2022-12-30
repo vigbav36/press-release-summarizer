@@ -1,0 +1,45 @@
+<html lang="en" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <main class="main">
+        <section class="p">
+            <h1>Text<span>Summarizer</span></h1>
+            <p>Summarize text with the click of a button!</p>
+
+        </section>
+
+        <section class="form">
+
+            <label for="cars" class="length_label">SUMMARY LENGTH  :</label>
+
+            <select name="length" id="length" form="input" class="length">
+              <option value="short">Short</option>
+              <option value="medium">Medium</option>
+              <option value="long">Long</option>
+            </select>
+
+
+            <div class="text_area">
+                <textarea class="text" id="text"  form ="input"  name="text" rows="15" cols="55" placeholder="Enter your text here" >{{ Output }}</textarea>
+                <form action= "{{ url_for('data') }}" method="POST" id="input" name="input">
+                    <input class="submit_button" type="submit" form="input" value="SUBMIT" id="submit_button" onclick="show_hide()" > </input>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

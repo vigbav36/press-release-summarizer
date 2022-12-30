@@ -1,0 +1,33 @@
+<html lang="en" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <main class="main">
+        <section class="p">
+            <h1>Text<span>Summarizer</span></h1>
+            <p>Summarize text with the click of a button!</p>
+
+        </section>
+
+        <section class="form">
+            <div class="text_area">
+                <textarea class="text" id="text"  form ="input"  name="text" rows="15" cols="55" >{{ Output }}</textarea>
+                <button type="button" id="submit_button" class="submit_button"><a href="./page1">BACK</a></button>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
