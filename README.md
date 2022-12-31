@@ -1,4 +1,4 @@
 # Text Summarizer
-## A machine learning based text summarizer web application.</h>
+## A web pplication that summarizes a given paragraph.</h>
 
 ____
