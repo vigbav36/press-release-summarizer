@@ -1,18 +1,14 @@
-import torch
 from flask import Flask, render_template, request
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
+
 app = Flask(__name__)
-
-"""
-# Pretrained T5 model for summarizing text
-
-"""
 
 model = T5ForConditionalGeneration.from_pretrained('t5-small',force_download = True)
 tokenizer = T5Tokenizer.from_pretrained('t5-small')
-device = torch.device('cpu')   
+device = torch.device('cpu')
+
 
 def summarize(text,min_len,max_len):
 
@@ -47,14 +43,14 @@ def page_1():
 
 @app.route('/', methods=['GET', 'POST'])
 def data():
-    if request.method == "POST":    
 
-        """
+    """
         # ARTICLE is the text to be summarized
         # We inititialize min_len and max_len according to length of the chosen summary
         # We require that the length of ARTICLE be atleast 60 characters
-        """
-
+    """
+    
+    if request.method == "POST":    
         ARTICLE = request.form['text'] 
 
         if len(ARTICLE) < 60:
@@ -73,6 +69,11 @@ def data():
       
         return render_template('result.html', Output=str1)
 
+if __name__ == "__main__":
 
+    """
+    # Pretrained T5 model for summarizing text
 
-
+    """
+    
+    app.run(debug=False)
