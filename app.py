@@ -1,21 +1,24 @@
-import io
 import torch
 from flask import Flask, render_template, request
-
-
-
-import pickle
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-
 app = Flask(__name__)
 
-model = T5ForConditionalGeneration.from_pretrained('t5-small')
+"""
+# Pretrained T5 model for summarizing text
+
+"""
+
+model = T5ForConditionalGeneration.from_pretrained('t5-small',force_download = True)
 tokenizer = T5Tokenizer.from_pretrained('t5-small')
-device = torch.device('cpu')
+device = torch.device('cpu')   
 
 def summarize(text,min_len,max_len):
+
+    """
+    # Function to Summarize text using the T5model
+    """
     
     preprocess_text = text.strip().replace("\n","")
     t5_prepared_Text = "summarize: "+preprocess_text
@@ -36,7 +39,7 @@ def summarize(text,min_len,max_len):
 
 @app.route('/')
 def home_page():
-    return render_template('index.html', button_name="SUBMIT")
+    return render_template('index.html')
 
 @app.route('/page1')
 def page_1():
@@ -44,20 +47,31 @@ def page_1():
 
 @app.route('/', methods=['GET', 'POST'])
 def data():
-    if request.method == "POST":
-        ARTICLE = request.form['text']
+    if request.method == "POST":    
+
+        """
+        # ARTICLE is the text to be summarized
+        # We inititialize min_len and max_len according to length of the chosen summary
+        # We require that the length of ARTICLE be atleast 60 characters
+        """
+
+        ARTICLE = request.form['text'] 
+
+        if len(ARTICLE) < 60:
+            return render_template('result.html', Output='PARAGRAPH TOO SMALL')
+
         l = request.form['length']
      
         if l=='short':
-            min_len, max_len = 30, 100
-        if l=='medium':
             min_len, max_len = 50, 100
-        if l=='long':
+        if l=='medium':
             min_len, max_len = 100, 150
+        if l=='long':
+            min_len, max_len = 150, 200
 
         str1 = summarize(ARTICLE,min_len,max_len)
       
-        return render_template('result.html', Output=str1, button_name="REDO")
+        return render_template('result.html', Output=str1)
 
 
 

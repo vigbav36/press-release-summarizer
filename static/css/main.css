@@ -123,20 +123,19 @@ a {
     text-decoration: none;
 }
 
-button{
-    border:0.2em solid rgb(124, 114, 114);
-    margin: 0 auto;
-    padding-left: 1em;
-    padding-right:2em;
-    transition: black 1s;
+.length_label{
+    color:white;
+    font-size:20px;
+     /*padding:0.5em;*/
+     margin-left:5em;
 
-    border: none;
-    margin-top: 10px;
-    cursor:pointer;
-    border-radius: 50px;
-    box-shadow: rgb(13, 14, 13) 1px 4px 3px;
 
 }
-.button_section{
-    display: block;
+/*Summary length menu button*/
+.length{
+    font-size:20px;
+    color:rgb(0, 0, 0);
+    background-color: rgb(215, 238, 207);
+   padding:0.5em;
+   border-radius:1em;
 }
