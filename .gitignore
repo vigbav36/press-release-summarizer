@@ -1,1 +1,4 @@
 __pycache__/
+.gcloudignore
+.gitignore
+model.pkl

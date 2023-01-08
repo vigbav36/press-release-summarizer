@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request
 import torch
 from transformers import T5Tokenizer, T5ForConditionalGeneration
+import pickle
+import gcsfs
 
-
+FS=gcsfs.GCSFileSystem(project='txt-summarizer')
 app = Flask(__name__)
 
-model = T5ForConditionalGeneration.from_pretrained('t5-small',force_download = True)
 tokenizer = T5Tokenizer.from_pretrained('t5-small')
 device = torch.device('cpu')
 
+TOKEN_PATH = 'gs://txt-summarizer/model.pkl'
+with FS.open(TOKEN_PATH, 'rb') as handle:
+	model = pickle.load(handle)
 
 def summarize(text,min_len,max_len):
 
@@ -76,4 +80,4 @@ if __name__ == "__main__":
 
     """
     
-    app.run(debug=False)
+    app.run(debug=False,host='0.0.0.0',port=80)
